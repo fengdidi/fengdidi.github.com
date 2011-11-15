@@ -3,9 +3,9 @@
 # ----------------------- #
 
 url: http://fengdidi.github.com
-title: My Octopress Blog
-subtitle: A blogging framework for hackers.
-author: Your Name
+title: Learn Prolog The Hard Way
+subtitle: 笨办法学Prolog
+author: 泰安小码农
 simple_search: http://google.com/search
 
 # Default date format is "ordinal" (resulting in "July 22nd 2007")
