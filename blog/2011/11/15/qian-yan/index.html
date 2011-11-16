@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Learn Prolog The Hard Way</title>
+  <title>前言 - Learn Prolog The Hard Way</title>
   <meta name="author" content="泰安小码农">
 
   
-  <meta name="description" content="这道习题几乎没有代码内容，它的主要目的是让你在计算机上安装好Prolog。你应该尽量照着说明进行操作。 安装SWI-Prolog MacOS 找一个你最喜欢的文本编辑器。在Mac系统下，TextMate也许是最好的选择，但是它是需要花钱购买的，如果你不想买的话， &hellip;">
+  <meta name="description" content="我一直以来想写一部帮助想学Prolog的朋友学习Prolog的教程，因为我在学习Prolog的过程中，发现有关Prolog的教学文档很少很少，中文的文档更是几乎没有。这给我学习Prolog带来很大的困难，基本上都是在一边摸索一边学习的。所以我幻想着有一天能够写一篇Prolog的入门教程， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://fengdidi.github.com">
+  <link rel="canonical" href="http://fengdidi.github.com/blog/2011/11/15/qian-yan">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -60,142 +60,12 @@
 </nav>
   <div id="main">
     <div id="content">
-      <div class="blog-index">
+      <div>
+<article class="hentry" role="article">
   
-  
-  
-    <article>
-      
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2011/11/15/di-1zhang-pei-zhi-kai-fa-huan-jing/">第1章:配置开发环境</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-11-15T20:08:00+01:00" pubdate data-updated="true">Nov 15<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>这道习题几乎没有代码内容，它的主要目的是让你在计算机上安装好Prolog。你应该尽量照着说明进行操作。</p>
-
-<h2>安装SWI-Prolog</h2>
-
-<h3>MacOS</h3>
-
-<ol>
-<li>找一个你最喜欢的文本编辑器。在Mac系统下，TextMate也许是最好的选择，但是它是需要花钱购买的，如果你不想买的话，可以使用一些免费的文本编辑器比如Kod。需要注意的是，这写编辑器本身都是不支持Prolog代码高亮的，如果你想要这个功能，你需要下载针对这些文本编辑器的插件，其中TextMate的插件可以在这里下载到<a href="http://netcetera.org/cgi-bin/tmbundles.cgi" title="Title">TextMate Bundle</a></li>
-<li>下载<a href="http://www.swi-prolog.org/download/stable" title="Title">SWI-Prolog</a>，请选择适合你系统版本的链接。下载解压之后双击安装包，等待一段时间以后，你的Prolog就安装好了。SWI-Prolog是Prolog的一个实现，作者是来自阿姆斯特丹大学的Jan，之所以选择这个Prolog实现作为开发的环境，一个原因是因为它很稳定，运行速度也算是可以，更重要的原因是它的开发文档写的很详细。这个Prolog的实现不是功能最多的，但是我个人认为是最好用的，也是最适合Prolog的初学者使用。</li>
-<li>当你安装好Prolog以后，进入命令终端，输入：<pre><code>swipl</code></pre>你应当看见下图：
-<img src="/images/chapter1_1.png" title="title" alt="&quot;alt&quot;" /></li>
-</ol>
-
-
-<h3>Windows</h3>
-
-<ol>
-<li>第一步同样是找一个自己喜欢的文本编辑器，个人推荐Notepad++，你可以轻易的在Google上搜寻到下载地址。</li>
-<li>下载<a href="http://www.swi-prolog.org/download/stable" title="Title">SWI-Prolog</a>，选择Windows的安装包，下载解压之后双击安装包，等待一段时间以后，你的Prolog就安装好了。</li>
-<li>与MacOS不同的是，在Windows下，你可以不必去命令行下面输入&#8221;swipl&#8221;,你可以直接双击桌面上的快捷方式就可以打开SWI-Prolog了。打开以后的界面应该和MacOS下的界面类似。</li>
-</ol>
-
-
-<h3>Linux</h3>
-
-<p>我相信使用Linux系统的朋友应该都懂得如何安装一个小小的软件吧？所以在这里就不赘述了～</p>
-
-<h2>Hello World!</h2>
-
-<p>好像在大部分的程序语言的时候，第一个要编写的程序都是“Hello World!”。虽然“Hello World”程序不能显示出Prolog的特性，我在这里也姑且做一个“Hello World!”的程序吧，目的是让大家试一下你们刚才下载的SWI-Prolog是否工作。</p>
-
-<p>按照之前的方法进入SWI-Prolog，在命令行下输入：</p>
-
-<pre><code>writeln('Hello World!').
-</code></pre>
-
-<p>需要注意的是，这行代码一定要以英文中的句号&#8221;.&#8221;来结尾，Prolog中的“.”和C语言中的“;”一样，都是代表一段代码的结尾。再者，Hello World!字符串一定要以单引号来包裹。
-如果输入正确的话，你将看到如下输出：</p>
-
-<pre><code>Hello World!
-true.
-</code></pre>
-
-<p>这里的“Hello World!”很好理解，这是我们要求程序输出的，那么那个奇怪的“true”是哪里来的呢？请注意，在Prolog终端输入的时候，没一个语句都是以“?-”这样两个字符开头的，它代表我们输入的程序代码其实是对Prolog系统的一个查询（问询），一旦用户输入了查询，Prolog系统会运用它的知识库来判定这个查询是真(true)是假(false). writeln是Prolog系统自己定义的一个语句, 它的作用是向当前的显示设备输出一个字符串并且换行, 所以很显然, 这个语句是真的, 因为Prolog知道有这个语句. 这就是为什么程序的最后有一个&#8221;true&#8221;. 有意思的是,因为整个过程中Prolog都是在试图证明这个语句是真是假, 向屏幕输出&#8221;Hello World!&#8221;这件事实际上是执行这个语句的&#8221;副作用&#8221;(side effect)!在Prolog中, 很多任务都是靠副作用来实现的, 包括输入输出, 甚至是参数的传递.</p>
-
-<p>好了, 到这里, 这一章就算是结束, 因为这一章讲的内容很基本, 我就不提供习题了. 下一章我们将正式开始学习有关Prolog语言的知识! 敬请期待!</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/11/15/di-0zhang-wei-shi-yao-yao-xue-xi-prolog/">第0章:为什么要学习Prolog</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-11-15T19:33:00+01:00" pubdate data-updated="true">Nov 15<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h2>为什么要学习Prolog</h2>
-
-<p>当我在大学的课程表里面发现Prolog这门课的时候，我十分惊讶，我在想：为什么我要学习Prolog呢？我会使用Java, C++和php编程，这些语言已经强大到几乎可以实现任何功能，而且有很多很多写好的函数库来供你使用，为什么我还要学习什么Prolog？</p>
-
-<p>当我开始学Prolog的时候，我发现这个语言的语法真是太奇怪了，有别于一般的编程语言，Prolog的程式是基于谓词逻辑的理论。最基本的写法是定立物件与物件之间的关系，之后可以用询问目标的方式来查询各种物件之间的关系。系统会自动进行匹配及回溯，找出所询问的答案。但是当我真正了解Prolog的时候，才发现，正因为Prolog的这种特性才让他异常的强大，简单的说，它是一个会自己思考的语言，它可以通过搜索自己的知识库来找到问题的答案，这是其他的程序语言所做不到的。在这里，我无法过多的解释Prolog的强大之处，我相信通过一段时间的学习，你可以逐渐发现Prolog是一门值得学习的语言。你可能在将来的软件开发事业中使用不到Prolog，但是你有关Prolog的知识能够帮助你更好的使用其他的语言。</p>
-
-<h2>Prolog的用途</h2>
-
-<p>目前来说，Prolog主要用在人工智能和计算机语言的研究领域。Prolog和LISP是两个主要的研究人工智能算法的工具，一个有趣的现象是：在美国，研究者们喜欢用LISP，在欧洲，研究者们更倾向与使用Prolog进行开发。这两门语言没有谁好谁坏之分，个人喜好罢了，事实上，在Prolog下面可以非常简单地实现一个LISP解析器，同样的，在LISP下也可以轻易的实现一个Prolog解析器。在后面的章节里面，我和台北小码农会教大家怎么做。</p>
-
-<p>其次，得益于Prolog的模式匹配功能，Prolog非常适合快速的开发一个语言的解析器，这使得很多计算机科学家在开发新的程序语言时，喜欢用Prolog先写一个实现，然后观察大众的反应，如何大众认为这个语言很好，就用更快的语言如C++来重新写解释器，如果大众的反应不好，就再用Prolog进行修改。</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/11/15/qian-yan/">前言</a></h1>
+      <h1 class="entry-title">前言</h1>
     
     
       <p class="meta">
@@ -218,7 +88,7 @@ true.
   </header>
 
 
-  <div class="entry-content"><p>我一直以来想写一部帮助想学Prolog的朋友学习Prolog的教程，因为我在学习Prolog的过程中，发现有关Prolog的教学文档很少很少，中文的文档更是几乎没有。这给我学习Prolog带来很大的困难，基本上都是在一边摸索一边学习的。所以我幻想着有一天能够写一篇Prolog的入门教程，来帮助其他想学Prolog的朋友对其有一个初步的了解。
+<div class="entry-content"><p>我一直以来想写一部帮助想学Prolog的朋友学习Prolog的教程，因为我在学习Prolog的过程中，发现有关Prolog的教学文档很少很少，中文的文档更是几乎没有。这给我学习Prolog带来很大的困难，基本上都是在一边摸索一边学习的。所以我幻想着有一天能够写一篇Prolog的入门教程，来帮助其他想学Prolog的朋友对其有一个初步的了解。
 这个想法在我心里存在了很久了，但是一直却没有付诸实施。其原因一是我没有太多的时间写这些文章，二是我没有一个如何写这部教程的点子。</p>
 
 <p>直到台北小码农同学给我推荐了一个系列的教程叫《Learn XXX The Hard Way》，并且邀请我一起来仿照着写Prolog和Scheme的教程。我大致的阅读了一下《Learn Python The Hard Way》,发现那本书很适合对计算机了解不多，没有学过编程，但对编程感兴趣的朋友学习使用。那本书以习题的方式引导读者一步一步学习编程，从简单的打印一直讲到完整项目的实现。也许读完那本书并不意味着读者已经学会了编程，但至少读者会对编程语言以及编程这个行业有一个初步的了解。所以，我决定接受台北小码农的提议，仿照着这种格式来写一篇关于Prolog的入门教程。</p>
@@ -263,18 +133,59 @@ true.
 
 <p>你可以在不收取任何费用，而且不修改任何内容的前提下自由分发这本书给任何人。但是本书的内容只允许完整原封不动地进行分发和传播。</p>
 </div>
+
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">泰安小码农</span></span>
+
+      
+
+
+
+
+
+
+
+
   
 
 
-    </article>
+<time datetime="2011-11-15T15:47:00+01:00" pubdate data-updated="true">Nov 15<span>th</span>, 2011</time>
+      
+
+<span class="categories">
   
-  <div class="pagination">
+    <a class='category' href='/blog/categories/logical-programming/'>Logical Programming</a>, <a class='category' href='/blog/categories/prolog/'>Prolog</a>
+  
+</span>
+
+
+    </p>
     
-    <a href="/blog/archives">Blog Archives</a>
-    
-  </div>
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://fengdidi.github.com/blog/2011/11/15/qian-yan/" data-via="" data-counturl="http://fengdidi.github.com/blog/2011/11/15/qian-yan/" >Tweet</a>
+  
+  
+  
 </div>
+
+    
+    <p class="meta">
+      
+      
+        <a class="basic-alignment right" href="/blog/2011/11/15/di-0zhang-wei-shi-yao-yao-xue-xi-prolog/" title="next Post: 第0章:为什么要学习Prolog">第0章:为什么要学习Prolog &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
 <aside class="sidebar">
   
     <section>
@@ -303,6 +214,7 @@ true.
 
   
 </aside>
+
 
     </div>
   </div>

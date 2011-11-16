@@ -1,0 +1,213 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>第0章:为什么要学习Prolog - Learn Prolog The Hard Way</title>
+  <meta name="author" content="泰安小码农">
+
+  
+  <meta name="description" content="为什么要学习Prolog 当我在大学的课程表里面发现Prolog这门课的时候，我十分惊讶，我在想：为什么我要学习Prolog呢？我会使用Java, C++和php编程，这些语言已经强大到几乎可以实现任何功能，而且有很多很多写好的函数库来供你使用，为什么我还要学习什么Prolog？ &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://fengdidi.github.com/blog/2011/11/15/di-0zhang-wei-shi-yao-yao-xue-xi-prolog">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Learn Prolog The Hard Way" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Learn Prolog The Hard Way</a></h1>
+  
+    <h2>笨办法学Prolog</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:fengdidi.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">第0章:为什么要学习Prolog</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-11-15T19:33:00+01:00" pubdate data-updated="true">Nov 15<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><h2>为什么要学习Prolog</h2>
+
+<p>当我在大学的课程表里面发现Prolog这门课的时候，我十分惊讶，我在想：为什么我要学习Prolog呢？我会使用Java, C++和php编程，这些语言已经强大到几乎可以实现任何功能，而且有很多很多写好的函数库来供你使用，为什么我还要学习什么Prolog？</p>
+
+<p>当我开始学Prolog的时候，我发现这个语言的语法真是太奇怪了，有别于一般的编程语言，Prolog的程式是基于谓词逻辑的理论。最基本的写法是定立物件与物件之间的关系，之后可以用询问目标的方式来查询各种物件之间的关系。系统会自动进行匹配及回溯，找出所询问的答案。但是当我真正了解Prolog的时候，才发现，正因为Prolog的这种特性才让他异常的强大，简单的说，它是一个会自己思考的语言，它可以通过搜索自己的知识库来找到问题的答案，这是其他的程序语言所做不到的。在这里，我无法过多的解释Prolog的强大之处，我相信通过一段时间的学习，你可以逐渐发现Prolog是一门值得学习的语言。你可能在将来的软件开发事业中使用不到Prolog，但是你有关Prolog的知识能够帮助你更好的使用其他的语言。</p>
+
+<h2>Prolog的用途</h2>
+
+<p>目前来说，Prolog主要用在人工智能和计算机语言的研究领域。Prolog和LISP是两个主要的研究人工智能算法的工具，一个有趣的现象是：在美国，研究者们喜欢用LISP，在欧洲，研究者们更倾向与使用Prolog进行开发。这两门语言没有谁好谁坏之分，个人喜好罢了，事实上，在Prolog下面可以非常简单地实现一个LISP解析器，同样的，在LISP下也可以轻易的实现一个Prolog解析器。在后面的章节里面，我和台北小码农会教大家怎么做。</p>
+
+<p>其次，得益于Prolog的模式匹配功能，Prolog非常适合快速的开发一个语言的解析器，这使得很多计算机科学家在开发新的程序语言时，喜欢用Prolog先写一个实现，然后观察大众的反应，如何大众认为这个语言很好，就用更快的语言如C++来重新写解释器，如果大众的反应不好，就再用Prolog进行修改。</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">泰安小码农</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-11-15T19:33:00+01:00" pubdate data-updated="true">Nov 15<span>th</span>, 2011</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://fengdidi.github.com/blog/2011/11/15/di-0zhang-wei-shi-yao-yao-xue-xi-prolog/" data-via="" data-counturl="http://fengdidi.github.com/blog/2011/11/15/di-0zhang-wei-shi-yao-yao-xue-xi-prolog/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2011/11/15/qian-yan/" title="Previous Post: 前言">&laquo; 前言</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2011/11/15/di-1zhang-pei-zhi-kai-fa-huan-jing/" title="next Post: 第1章:配置开发环境">第1章:配置开发环境 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2011/11/15/di-1zhang-pei-zhi-kai-fa-huan-jing/">第1章:配置开发环境</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/11/15/di-0zhang-wei-shi-yao-yao-xue-xi-prolog/">第0章:为什么要学习Prolog</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/11/15/qian-yan/">前言</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2011 - 泰安小码农 -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

@@ -1,11 +1,25 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
+        <loc>http://fengdidi.github.com/blog/2011/11/15/qian-yan/</loc>
+        <lastmod>2011-11-15T19:32:10+01:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://fengdidi.github.com/blog/2011/11/15/di-0zhang-wei-shi-yao-yao-xue-xi-prolog/
+        </loc>
+        <lastmod>2011-11-15T20:08:43+01:00</lastmod>
+    </url>
+    <url>
+        <loc>http://fengdidi.github.com/blog/2011/11/15/di-1zhang-pei-zhi-kai-fa-huan-jing/</loc>
+        <lastmod>2011-11-16T15:14:27+01:00</lastmod>
+    </url>
+    <url>
         <loc>http://fengdidi.github.com/blog/archives/</loc>
-        <lastmod>2011-11-15T15:19:50+01:00</lastmod>
+        <lastmod>2011-11-16T15:14:27+01:00</lastmod>
     </url>
     <url>
         <loc>http://fengdidi.github.com/</loc>
-        <lastmod>2011-11-15T15:19:50+01:00</lastmod>
+        <lastmod>2011-11-16T15:14:27+01:00</lastmod>
     </url>
 </urlset>
