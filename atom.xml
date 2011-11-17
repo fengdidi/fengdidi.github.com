@@ -4,7 +4,7 @@
   <title><![CDATA[Learn Prolog The Hard Way]]></title>
   <link href="http://fengdidi.github.com/atom.xml" rel="self"/>
   <link href="http://fengdidi.github.com/"/>
-  <updated>2011-11-16T22:29:18+01:00</updated>
+  <updated>2011-11-17T18:02:40+01:00</updated>
   <id>http://fengdidi.github.com/</id>
   <author>
     <name><![CDATA[泰安小码农]]></name>
@@ -12,6 +12,127 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[第3章:Prolog是如何回答问题的]]></title>
+    <link href="http://fengdidi.github.com/blog/2011/11/17/di-3zhang-prologshi-ru-he-hui-da-wen-ti-de/"/>
+    <updated>2011-11-17T12:25:00+01:00</updated>
+    <id>http://fengdidi.github.com/blog/2011/11/17/di-3zhang-prologshi-ru-he-hui-da-wen-ti-de</id>
+    <content type="html"><![CDATA[<p>在上一章节里面，我给大家演示了一个Prolog特有的神奇的功能：它能够回答你提出的问题！在这一章里面，我将简单的解释一下Prolog是如何能够回答你的问题的。
+首先，还是自己试着把下面的程序写一下，然后加载到SWI-Prolog里面。</p>
+
+<pre><code>parent(di,yuqing).
+parent(keyuan,jianbo).
+parent(jianbo,di).
+
+ancestor(X,Y):-parent(X,Y).
+ancestor(X,Y):-parent(X,Z),ancestor(Z,Y).
+</code></pre>
+
+<p>然后我们问Prolog:</p>
+
+<pre><code>?- ancestor(keyuan,yuqing).
+</code></pre>
+
+<p>Prolog系统会试图证明这个查询，很显然，程序会返回&#8221;true.&#8221;那么，Prolog系统是如何找到答案的呢？当我们向Prolog提问&#8221;ancestor(keyuan,yuqing)&#8221;的时候，Prolog首先会在它的知识库里面寻找&#8221;ancestor&#8221;的定义，当然，它找到了两个&#8221;ancestor&#8221;的定义：</p>
+
+<pre><code>ancestor(X,Y):-parent(X,Y).
+ancestor(X,Y):-parent(X,Z),ancestor(Z,Y).
+</code></pre>
+
+<p>按照默认的规定，它会首先取第一个规则：“ancestor(X,Y):-parent（X,Y).”由于这个规则里面的X,Y是变量，Prolog会给这两个变量赋值，使得：</p>
+
+<pre><code>ancestor(keyuan,yuqing) = ancestor(X,Y)
+</code></pre>
+
+<p>很显然，X=keyuan,Y=yuqing。之后，Prolog会把ancestor换成后面的条件：</p>
+
+<pre><code>ancestor(keyuan,yuqing) ==&gt; parent(keyuan,yuqing).
+</code></pre>
+
+<p>之后，Prolog试图证明&#8221;parent(keyuan,yuqing)&#8221;,根据上面的程序，很显然，这是错的，会返回：&#8221;false&#8221;。那么，之后Prolog会怎么办呢？记得上面说过，ancestor有两个规则吧，我们之前根据惯例选择了第一个规则，现在我们可以试一下第二个规则：&#8221;ancestor(X,Y):-parent(X,Z),ancestor(Z,Y).&#8221;根据这个规则，Prolog会把&#8221;ancestor(keyuan,yuqing).&#8221;换成了：</p>
+
+<pre><code>parent(keyuan,Z),ancestor(Z,yuqing).
+</code></pre>
+
+<p>之前Prolog需要证明一个式子(ancestor(keyuan,yuqing).)，现在Prolog需要证明两个式子了。因为这两个式子中间是一个逗号，逗号的意思是”且“，所以只有当这两个式子都是&#8221;true&#8221;时候，整个的查询才是&#8221;true&#8221;。首先，Prolog会尝试第一个”parent(keyuan,Z).“它会在知识库里面找到：&#8221;parent(keyuan,jianbo)&#8221;。于是，Z=jianbo。这时候，我们之前的那两个式子变成了：</p>
+
+<pre><code>parent(keyuan,jianbo),ancestor(jianbo,yuqing).
+</code></pre>
+
+<p>然后，Prolog尝试证明第二个式子：&#8221;ancestor(jianbo,yuqing)&#8221;。同样的道理，Prolog首先找到的是：&#8221;ancestor(X,Y):-parent(X,Y)&#8221;，于是想证明&#8221;ancestor(jianbo,yuqing)&#8221;就变成了要证明&#8221;parent(jianbo,yuqing)&#8221;。很显然&#8221;parent(jianbo,yuqing)&#8221;会返回&#8221;false&#8221;。这时候，程序会试着把&#8221;ancestor(jianbo,yuqing)&#8221;替换成&#8221;parent(jianbo,Z1),ancestor(Z1,yuqing)&#8221;。要注意的是，此处我们不用Z作为变量了，而是用Z1作为变量，这叫做变量的重命名。原因是我们之前已经用过Z做变量了，为了把现在这个Z变量和之前的Z变量区别开来，我们把现在的Z变量重命名为Z1。很显然，无论变量的名字如何，它都是一个变量，理论上我们可以把它赋值成任何值，所以修改名字不会改变变量的含义。根据我们的知识库，此时Z1应该等于di。于是我们得到了两个式子：</p>
+
+<pre><code>parent(jianbo,di),ancestor(di,yuqing).
+</code></pre>
+
+<p>把&#8221;ancestor(di,yuqing).&#8221;换成&#8221;parent(di,yuqing)&#8221;，我们得到一个事实(fact),所以&#8221;parent(di,yuqing)&#8221;是真。
+综上所述，我们其实是用回溯的方式把&#8221;ancestor(keyuan,yuqing).&#8221;换成了：</p>
+
+<pre><code>parent(keyuan,jianbo),parent(jianbo,di),parent(di,yuqing).
+</code></pre>
+
+<p>由于上面的三个式子都是真的，所以&#8221;ancestor(keyuan,yuqing).&#8221;是真的。</p>
+
+<p>下面这个图显示了Prolog是如何证明你的查询的：</p>
+
+<p><img src="http://fengdidi.github.com/images/chapter3_1.png" title="back-track tree" alt="&quot;alt&quot;" /></p>
+
+<p>通过这个简单的例子，我们可以得出，Prolog通过三个方面来尝试着证明你给的查询(query)：</p>
+
+<ul>
+<li>匹配(unifing/matching)。例如上面的&#8221;ancestor(keyuan,yuqing) = ancestor(X,Y)&#8221;，Prolog试图从它的知识库里面找出最符合你的查询的规则或者是事实。</li>
+<li>变量重命名(variable renaming)。例如上面的&#8221;parent(jianbo,Z1),ancestor(Z1,yuqing)&#8221;，因为在同一个查询(query)里面已经有了&#8221;Z&#8221;，所以Prolog系统将重复的Z命名为Z1。(事实上，在Prolog内部，变量根本不会用&#8221;Z&#8221;,&#8221;Z1&#8221;这样的名字，Prolog的编译程序的时候就已经将&#8221;Z&#8221;换成了&#8221;G132329392049&#8221;这类名字以保证名字不会重复)。</li>
+<li>回溯(back-tracking)。这是Prolog最最重要的一个特性。Prolog是用深度优先(depth-first search)的算法来寻找答案的。当一个规则或者是事实不符合时，Prolog会通过回溯的方式回到之前的状态，然后去尝试另外的规则或者是事实，知道你的查询(query)被证明为止。如果所有的可能性都搜索过了，你的查询仍然不能得到证实，那么Prolog会认为你的查询证实不了，返回&#8221;false&#8221;。有关回溯算法的详细介绍你可以去网络上搜索一下。</li>
+</ul>
+
+
+<p>到这里，这一章就结束了，希望你对Prolog程序的执行顺序有了一个初步的了解。说实话，Prolog的程序回溯执行方式有时候我自己都想不明白，特别是遇到特别复杂的问题的时候。这个时候，最好的办法就是拿一张纸一支笔，亲自画一下程序的回溯图，就想上面的那个图一样，这样就能帮助你理解程序了～</p>
+
+<h2>加分习题</h2>
+
+<ol>
+<li><p>我们有如下代码：</p>
+
+<p> parent(tom,bob).
+ parent(pam,bob).
+ parent(pam,liz).
+ parent(pam,bob).
+ male(tom).
+ male(bob).
+ female(liz).
+ female(pam).
+ sister(X,Y):-</p>
+
+<pre><code> parent(Z,X),
+ parent(Z,Y),
+ female(X),
+ X\=Y.
+</code></pre>
+
+<p>请比照着上面的教程里面&#8221;ancestor(keyuan,yuqing)&#8221;的执行顺序图画一个
+ ?-sister(liz,bob).
+的执行图。(注：程序中的&#8221;X\=Y&#8221;是X不等于Y的意思)</p></li>
+<li><p>(这道题有点难度哦)请看下图：</p></li>
+</ol>
+
+
+<p><img src="http://fengdidi.github.com/images/chapter3_2.png" title="question chapter 1" alt="&quot;alt&quot;" /></p>
+
+<p>我们的目的是要在上面表格中白色的方格(带有LXX标识的方格)里面填上英文单词，可供选择的单词有：</p>
+
+<pre><code>word(d,o,g).    word(r,u,n).    word(t,o,p).    word(f,i,v,e).
+word(f,o,u,r).  word(l,o,s,t).  word(m,e,s,s).  word(u,n,i,t).
+word(b,a,k,e,r).    word(f,o,r,u,m).    word(g,r,e,e,n).
+word(s,u,p,e,r).    word(p,r,o,l,o,g).  word(v,a,n,i,s,h).
+word(w,o,n,d,e,r).  word(y,e,l,l,o,w).
+</code></pre>
+
+<p>试着写出一个规则solution.</p>
+
+<pre><code>solution(L1,L2,L3,L4,L5,L6,L7,L8,L9,L10,L11,L12,L13,L14,L15,L16).
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[第2章:谁是谁的爸爸]]></title>
