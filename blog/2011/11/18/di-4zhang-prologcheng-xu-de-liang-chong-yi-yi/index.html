@@ -1,0 +1,287 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>第4章:Prolog程序的两种意义 - Learn Prolog The Hard Way</title>
+  <meta name="author" content="泰安小码农">
+
+  
+  <meta name="description" content="单词谜题 在进行下一章之前，我想先把上一章加分习题的第二题答案给大家揭晓一下，因为台北小码农给我反应说这一道题有点难了，连学过Prolog的人都不一定会做。确实，这是一道难题，但是这道题的难点不在于程序本身逻辑上的复杂或者是用到了什么高级的语法， &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://fengdidi.github.com/blog/2011/11/18/di-4zhang-prologcheng-xu-de-liang-chong-yi-yi">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Learn Prolog The Hard Way" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Learn Prolog The Hard Way</a></h1>
+  
+    <h2>笨办法学Prolog</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:fengdidi.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">第4章:Prolog程序的两种意义</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-11-18T19:24:00+01:00" pubdate data-updated="true">Nov 18<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><h3>单词谜题</h3>
+
+<p>在进行下一章之前，我想先把上一章加分习题的第二题答案给大家揭晓一下，因为台北小码农给我反应说这一道题有点难了，连学过Prolog的人都不一定会做。确实，这是一道难题，但是这道题的难点不在于程序本身逻辑上的复杂或者是用到了什么高级的语法，这道题的难点在于你必须要清楚地理解Prolog程序的意义才能得出答案。好了，先给大家看一下答案的程序：</p>
+
+<pre><code>solution(L1,L2,L3,L4,L5,L6,L7,L8,L9,L10,L11,L12,L13,L14,L15,L16):-
+    word(L1,L2,L3,L4,L5),
+    word(L9,L10,L11,L12,L13,L14),
+    word(L1,L6,L9,L15),
+    word(L3,L7,L11),
+    word(L5,L8,L13,L16).
+</code></pre>
+
+<p>以上就是这个单词谜题的答案。在编写Prolog程序的时候，之前有编程基础的朋友一定要摒弃之前编程的习惯，因为像C,Java这样的程序语言，程序员解决问题的方式实际上是把解决问题的步骤用程序一步一步地表示出来。换句话说，就是程序员要用程序语言告诉电脑应当怎样一步一步地做，才能找到问题的答案。Prolog不是这样，Prolog程序员让程序解决一个问题时，只需要把想要得到的答案的形式表述出来，Prolog系统会自动帮你找答案。就像上面这个程序一样，你告诉Prolog系统，答案应该是什么样子的呢？首先，我们要将5个单词填入表格中，同时，单词和单词之间有可能共享同一个英文字母。所以这儿有两个“约束”，一个约束是单词字母的个数，第二个约束是单词里面可以出现的字字母。让我们先写水平排列的两个单词：</p>
+
+<pre><code>word(L1,L2,L3,L4,L5), &lt;-----单词1
+word(L9,L10,L11,L12,L13,L14)    &lt;-----单词2
+</code></pre>
+
+<p>之后，我们加上竖直的三个单词：</p>
+
+<pre><code>word(L1,L6,L9,L15), &lt;-----单词3
+word(L3,L7,L11),    &lt;-----单词4
+word(L5,L8,L13,L16) &lt;-----单词5
+</code></pre>
+
+<p>单词1和单词3共享字母“L1”,单词4和单词1共享字母“L3”,单词4和单词2共享字母“L12”，依次类推，我们可以把所有的约束都写出来。这样，我们就告诉Prolog系统最后的答案长得什么样儿了。有了答案的形式，Prolog就会用我之前提到的三个策略(回溯，变量重命名，模式匹配)来找出答案。</p>
+
+<h3>程序的意义</h3>
+
+<p>上述的程序其实昭示了Prolog程序的其中一个意义：陈述性意义(declarative meaning)。Prolog程序具有陈述性意义就在于Prolog都是描述的逻辑学上的一个事实或者是一个规则。例如：</p>
+
+<pre><code>mother(pam,bob).
+</code></pre>
+
+<p>这句程序语句陈述了一个事实：pam是bob的妈妈。再看：</p>
+
+<pre><code>grandmother(X,Y):-mother(X,Z),father(Z,Y).
+</code></pre>
+
+<p>这个语句陈述的是一个规则：当X是Z的母亲并且Z是Y的父亲时，X是Y的母亲。当我们在Prolog系统上输入“grandmother(X,bob)”这样的查询时，实际上就是让Prolog根据自己知道的逻辑规则来试图证明你的查询。这就是程序的陈述性意义。</p>
+
+<p>程序的第二个意义是过程性意义。想Java和C这样的语言一样，Prolog的程序也具有过程性意义，即解决问题的步骤。在举例子之前，我先讲一个在Prolog里面常用的语句：&#8221;write&#8221;，它的作用是向显示屏输出信息。它的参数可以是任意类型的数据，数字，字符串，甚至一个Prolog的规则都可以直接被输出。另外一个语句是&#8221;nl&#8221;，它的作用是使Prolog的屏幕输出换行。下面给一个程序，你就能理解&#8221;write&#8221;和&#8221;nl&#8221;的作用了：</p>
+
+<pre><code>write('I have a dream'),nl,
+write('that my four little children will one day live in a nation'),nl,
+write('where they will not be judged by the color of their skin'),nl,
+write('but by the content of their character.'),nl,
+write('This is form Martin Luther King').
+</code></pre>
+
+<p>Prolog会这样输出：</p>
+
+<pre><code>I have a dream
+that my four little children will one day live in a nation
+where they will not be judged by the color of their skin
+but by the content of their character.
+This is form Martin Luther King
+true.
+</code></pre>
+
+<p>上面这个程序其实就揭示了Prolog程序的过程性意义，它告诉Prolog系统：要想输出上面这一段话，首先要输出&#8217;I have a dream&#8217;，然后换行，接着输出’that my four little children will one day live in a nation‘，然后换行，依次类推。它实际上是告诉了Prolog系统一个解决问题的步骤。这就是程序的过程性意义。</p>
+
+<p>其实，就Prolog本身的意义来说，编写Prolog程序的时候是不提倡加入太多的过程性意义的，尽量要以描述性意义为主，因为Prolog本身就是一个描述性语言。但是，程序员们在实际开发的时候发现，他们离不开过程性意义的程序，因为现实生活中解决问题本身就是需要步骤的，例如你想从北京到泰安，你要先从北京到天津，然后从天津到沧州，然后从沧州到济南，最后从济南到泰安。所以，在Prolog里面就不可避免的出现过程性意义为主的程序。</p>
+
+<h2>加分习题</h2>
+
+<ol>
+<li>下面我们来试着把单词谜题的答案打印的屏幕上，你要写一个规则”print_solution“，试着把答案这样打印：
+
+<pre><code> word1 is XXXXXX
+ word2 is XXXXXX
+ word3 is XXXXXX
+ word4 is XXXXXX
+ word5 is XXXXXX
+</code></pre>
+
+<p>之后，试着解释一下你写的程序的过程性意义和陈述性意义。</p></li>
+</ol>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">泰安小码农</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-11-18T19:24:00+01:00" pubdate data-updated="true">Nov 18<span>th</span>, 2011</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://fengdidi.github.com/blog/2011/11/18/di-4zhang-prologcheng-xu-de-liang-chong-yi-yi/" data-via="" data-counturl="http://fengdidi.github.com/blog/2011/11/18/di-4zhang-prologcheng-xu-de-liang-chong-yi-yi/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2011/11/17/di-3zhang-prologshi-ru-he-hui-da-wen-ti-de/" title="Previous Post: 第3章:Prolog是如何回答问题的">&laquo; 第3章:Prolog是如何回答问题的</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2011/11/18/di-4zhang-prologcheng-xu-de-liang-chong-yi-yi/">第4章:Prolog程序的两种意义</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/11/17/di-3zhang-prologshi-ru-he-hui-da-wen-ti-de/">第3章:Prolog是如何回答问题的</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/11/16/di-2zhang-shui-shi-shui-de-ba-ba/">第2章:谁是谁的爸爸</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/11/15/di-1zhang-pei-zhi-kai-fa-huan-jing/">第1章:配置开发环境</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/11/15/di-0zhang-wei-shi-yao-yao-xue-xi-prolog/">第0章:为什么要学习Prolog</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2011 - 泰安小码农 -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

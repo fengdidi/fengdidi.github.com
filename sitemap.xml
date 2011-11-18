@@ -2,7 +2,7 @@
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
         <loc>http://fengdidi.github.com/blog/2011/11/15/qian-yan/</loc>
-        <lastmod>2011-11-15T19:32:10+01:00</lastmod>
+        <lastmod>2011-11-18T15:52:57+01:00</lastmod>
     </url>
     <url>
         <loc>
@@ -25,11 +25,17 @@
         <lastmod>2011-11-17T18:02:28+01:00</lastmod>
     </url>
     <url>
+        <loc>
+            http://fengdidi.github.com/blog/2011/11/18/di-4zhang-prologcheng-xu-de-liang-chong-yi-yi/
+        </loc>
+        <lastmod>2011-11-18T20:34:06+01:00</lastmod>
+    </url>
+    <url>
         <loc>http://fengdidi.github.com/blog/archives/</loc>
-        <lastmod>2011-11-17T18:02:28+01:00</lastmod>
+        <lastmod>2011-11-18T20:34:06+01:00</lastmod>
     </url>
     <url>
         <loc>http://fengdidi.github.com/</loc>
-        <lastmod>2011-11-17T18:02:28+01:00</lastmod>
+        <lastmod>2011-11-18T20:34:06+01:00</lastmod>
     </url>
 </urlset>
